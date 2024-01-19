@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv2msx3frhqdn"]
+
+[ext_resource type="Texture2D" uid="uid://g66fgjb7tugb" path="res://icon.svg" id="1_stpjn"]
+[ext_resource type="Script" path="res://enemy.gd" id="2_hkus1"]
+[ext_resource type="Script" path="res://Timero.gd" id="3_sdeau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awr4l"]
+size = Vector2(67, 30)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["enemy"]]
+position = Vector2(324, 84)
+script = ExtResource("2_hkus1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_awr4l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 2)
+scale = Vector2(0.6, 0.32)
+texture = ExtResource("1_stpjn")
+metadata/_edit_vertical_guides_ = [1151.0, 1151.0]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, 29)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("3_sdeau")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://btbgm0fv0sk1l"]
+
+[ext_resource type="Texture2D" uid="uid://g66fgjb7tugb" path="res://icon.svg" id="1_5gul2"]
+[ext_resource type="Script" path="res://tt.gd" id="1_5yi31"]
+[ext_resource type="Script" path="res://Timers.gd" id="3_k6rim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23u4j"]
+size = Vector2(62, 62)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_5yi31")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(0.498583, 0.482647)
+texture = ExtResource("1_5gul2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_23u4j")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -44)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+script = ExtResource("3_k6rim")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
